@@ -20,7 +20,7 @@ const Banner = () => {
       {/* Rest of the content */}
       <div>
         <div
-          className="h-screen bg-cover bg-no-repeat bg-center "
+          className="h-full bg-cover bg-no-repeat bg-center "
           style={{ backgroundImage: `url(${Sekani})` }}
         >
           <div

@@ -1,4 +1,4 @@
-import { imageNames } from "../data";
+import imageNames from "../data";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
           {imageNames.map((item) => (
             <img
               key={item.id}
-              className="w-[220px] inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300 rounded-lg bg-black"
+              className="w-[220px] h-40 inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300 rounded-lg bg-black"
               src={item.image}
               alt="/"
             />
