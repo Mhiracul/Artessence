@@ -3,7 +3,7 @@ import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import PropTypes from "prop-types";
 import imageNames from "../data";
-
+import Banner from "../component/Banner";
 const Gallery = () => {
   const [images, setImages] = useState(imageNames);
   const [loading, setLoading] = useState(false);
@@ -78,31 +78,34 @@ const Gallery = () => {
     : images;
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      <div>
-        <div className="mb-4">
-          <input
-            type="text"
-            placeholder="Search by tag"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg w-full"
-          />
-        </div>
-
-        {loading ? (
-          // Display a loading state when loading is true
-          <div className="loader">Loading...</div>
-        ) : (
-          // Display all images or filtered images with drag-and-drop functionality
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {filteredImages.map((image) => (
-              <DraggableImage key={image.id} image={image} />
-            ))}
+    <>
+      <Banner />
+      <DndProvider backend={HTML5Backend}>
+        <div>
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Search by tag"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="px-4 py-2 border border-gray-300 rounded-lg w-full"
+            />
           </div>
-        )}
-      </div>
-    </DndProvider>
+
+          {loading ? (
+            // Display a loading state when loading is true
+            <div className="loader">Loading...</div>
+          ) : (
+            // Display all images or filtered images with drag-and-drop functionality
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {filteredImages.map((image) => (
+                <DraggableImage key={image.id} image={image} />
+              ))}
+            </div>
+          )}
+        </div>
+      </DndProvider>
+    </>
   );
 };
 
