@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import CardSlider from "./CardSlider";
@@ -15,6 +15,23 @@ const Banner = () => {
     });
   }, []);
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    // Update windowWidth whenever the window is resized
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Remove event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className="h-full relative">
       {/* Rest of the content */}
@@ -28,11 +45,11 @@ const Banner = () => {
             bg-opacity-20 rounded-md shadow-md card  justify-center px-14 "
             data-aos="fade-up"
           >
-            <div className="px-14 py-40">
-              <h1 className="text-4xl font-bold text-white container ">
-                Welcome to Sekani Mall
+            <div className=" py-40 container">
+              <h1 className="lg:text-4xl md:text-2xl text-xl font-bold text-white container ">
+                CREATING QUALITY PHOTOS
               </h1>
-              <p className="max-w-md text-gray-300 mt-4 text-[12px]">
+              <p className="max-w-md text-gray-300 mt-4 lg:text-[12px] ">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea
                 harum totam a deserunt porro quas magnam ipsam voluptatibus in
                 reprehenderit.
@@ -41,7 +58,11 @@ const Banner = () => {
                 VIEW MORE
               </button>
             </div>
-            <div className="absolute bottom-0 right-0 p-8 px-28">
+            <div
+              className={`absolute ${
+                windowWidth <= 900 ? "top-0" : "bottom-0"
+              } right-0 p-8 px-28`}
+            >
               <CardSlider />
             </div>{" "}
           </div>
