@@ -4,7 +4,7 @@
 
 .background-content {
   color: #fef9f9;
-  font-size: 5vw;
+  font-size: 9vw;
   font-weight: 700;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -18,7 +18,7 @@ div span {
   text-shadow: -0.08em 0.03em 0.12em rgba(120, 119, 119, 0.9);
 }
 div span:not(:first-child) {
-  margin-left: -0.23em;
+  margin-left: -0.15em;
 }
 
 /* CSS Transitions for smooth animations */

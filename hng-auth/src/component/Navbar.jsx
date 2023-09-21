@@ -53,7 +53,7 @@ const Navbar = () => {
   return (
     <div
       className="w-full fixed  bg-gradient bg-gradient-to-br from-gray-300 to-transparent  
-    bg-opacity-20 rounded-md  card shadow-lg flex justify-between py-2 z-[99999]  items-center  font-bold cursor-pointer  text-[#03032B] px-20"
+    bg-opacity-20 rounded-md  card shadow-lg flex justify-between py-2 z-[99999]  items-center  font-bold cursor-pointer  text-[#03032B] md:px-12 px-6"
     >
       <div className="hidden md:block container">
         <h1 className="text-xl text-black">ArtEssence</h1>
@@ -97,7 +97,7 @@ const Navbar = () => {
       </div>
 
       <div onClick={handleClick} className="md:hidden z-10 ">
-        {!nav ? <FaBars /> : <FaTimes />}
+        {!nav ? <FaBars color="#fff" /> : <FaTimes color="#fff" />}
       </div>
 
       {/* Mobile menu */}

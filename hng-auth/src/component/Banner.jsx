@@ -39,10 +39,10 @@ const Banner = () => {
         >
           <div
             className="h-full bg-gradient bg-gradient-to-br from-gray-800 to-transparent  
-            bg-opacity-20 rounded-md shadow-md card  justify-center px-6 "
+            bg-opacity-20 rounded-md shadow-md card  justify-center  "
             data-aos="fade-up"
           >
-            <div className=" py-40  px-12 ">
+            <div className=" py-40  md:px-12 px-6 ">
               <div className="background-content text-left ">
                 <div className="background-info reveal">
                   <div className="span rays reveal">

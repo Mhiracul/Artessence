@@ -11,7 +11,7 @@ function App() {
           {imageNames.map((item) => (
             <img
               key={item.id}
-              className="w-[220px] h-60 inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300 rounded-lg"
+              className="md:w-[220px] md:h-60 h-32 w-32 inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300 rounded-lg"
               src={item.image}
               alt="/"
             />
