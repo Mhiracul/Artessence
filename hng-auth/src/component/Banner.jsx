@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import CardSlider from "./CardSlider";
-//import Sekani from "../assets/images/2.jpg";
 import { FaGithub, FaInstagramSquare } from "react-icons/fa";
 
 const Banner = () => {
@@ -18,15 +17,12 @@ const Banner = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    // Update windowWidth whenever the window is resized
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
 
-    // Add event listener for window resize
     window.addEventListener("resize", handleResize);
 
-    // Remove event listener on component unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -34,7 +30,6 @@ const Banner = () => {
 
   return (
     <div className="h-full relative">
-      {/* Rest of the content */}
       <div>
         <div
           className="h-[70vh] bg-cover bg-no-repeat bg-center "

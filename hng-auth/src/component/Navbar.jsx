@@ -96,7 +96,6 @@ const Navbar = () => {
         <h1 className="text-red-500">ARTESSSENCE</h1>
       </div>
 
-      {/* Hamburger */}
       <div onClick={handleClick} className="md:hidden z-10 ">
         {!nav ? <FaBars /> : <FaTimes />}
       </div>
@@ -128,8 +127,6 @@ const Navbar = () => {
           Contact
         </Link>
       </ul>
-
-      {/* Social icons */}
     </div>
   );
 };

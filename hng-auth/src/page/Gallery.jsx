@@ -5,7 +5,9 @@ import { TouchBackend } from "react-dnd-touch-backend";
 import PropTypes from "prop-types";
 import imageNames from "../data";
 import { css } from "@emotion/react";
-import { PacmanLoader } from "react-spinners"; // Import the spinner component
+import { PacmanLoader } from "react-spinners";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Gallery = () => {
   const [images, setImages] = useState(imageNames);
@@ -17,17 +19,23 @@ const Gallery = () => {
   };
 
   useEffect(() => {
-    setLoading(true); // Set loading state to true when searching
+    AOS.init({
+      offset: 100,
+      duration: 500,
+      easing: "ease-in-out",
+      once: true,
+    });
+  }, []);
 
-    // Simulate loading delay (replace this with your actual loading logic)
+  useEffect(() => {
+    setLoading(true);
+
     const timer = setTimeout(() => {
-      setLoading(false); // Set loading state to false after a delay (e.g., fetching images)
-    }, 5000); // Adjust the delay as needed
+      setLoading(false);
+    }, 5000);
 
-    // Cleanup the timer to prevent memory leaks
     return () => clearTimeout(timer);
-  }, [searchTerm]); // Run this effect whenever searchTerm changes
-
+  }, [searchTerm]);
   const handleDrop = (draggedImageId, droppedImageId) => {
     const updatedImages = [...images];
     const draggedImageIndex = updatedImages.findIndex(
@@ -49,8 +57,7 @@ const Gallery = () => {
       type: ItemTypes.IMAGE,
       item: { id: image.id },
       options: {
-        // Set a threshold for movement before drag starts (adjust as needed)
-        clickTolerance: 30, // Adjust this value as needed
+        clickTolerance: 30,
       },
     });
 
@@ -63,6 +70,7 @@ const Gallery = () => {
       <div
         ref={(node) => ref(drop(node))}
         className="draggable-item relative rounded-lg shadow-md bg-white"
+        data-aos="fade-up"
       >
         <img
           src={image.image}
@@ -80,7 +88,6 @@ const Gallery = () => {
       ? TouchBackend
       : HTML5Backend;
 
-  // Filter images based on search term
   const filteredImages = searchTerm
     ? images.filter((image) => image.tags.includes(searchTerm))
     : images;
@@ -100,8 +107,7 @@ const Gallery = () => {
           </div>
 
           {loading ? (
-            // Display the loading spinner when loading is true
-            <div className="flex justify-center  h-screen">
+            <div className="flex justify-center items-center  h-screen">
               <PacmanLoader color="#FF0000" loading={loading} css={override} />
             </div>
           ) : (
