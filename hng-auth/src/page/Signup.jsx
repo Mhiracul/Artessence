@@ -25,7 +25,7 @@ const Signup = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate("/verify-email");
+      navigate("/login");
     } catch (e) {
       setError(e.message);
       await Swal.fire({
@@ -74,7 +74,7 @@ const Signup = () => {
               <p className="text-sm mt-2">
                 Have an account?{" "}
                 <Link to="/login" className="text-red-600">
-                  Sign up
+                  Sign in
                 </Link>{" "}
               </p>
             </div>

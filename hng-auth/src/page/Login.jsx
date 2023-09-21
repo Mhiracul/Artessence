@@ -19,28 +19,15 @@ const Login = () => {
     try {
       const userCredential = await signIn(email, password);
 
-      const isDefaultUser =
-        email === "user@example.com" && password === "1Password";
+      await Swal.fire({
+        icon: "success",
+        title: "Login Successful",
+        text: "Redirecting...",
+        showConfirmButton: false,
+        timer: 1500,
+      });
 
-      if (isDefaultUser) {
-        await Swal.fire({
-          icon: "success",
-          title: "Default User Login Successful",
-          text: "Redirecting...",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
-        await Swal.fire({
-          icon: "success",
-          title: "Login Successful",
-          text: "Redirecting...",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-
-      if (!isDefaultUser && userCredential.user) {
+      if (userCredential.user) {
         navigate("/");
       }
     } catch (error) {
