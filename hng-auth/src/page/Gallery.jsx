@@ -95,24 +95,23 @@ const Gallery = () => {
   return (
     <>
       <DndProvider backend={backend}>
-        <div className="bg-[#2b2b2b]">
-          <div className=" container mx-auto py-6 px-6">
+        <div className="bg-[#fff]">
+          <div className=" container mx-auto py-6 px-6 ">
             <input
               type="text"
               placeholder="Search by tag"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="px-4 py-1 text-sm outline-none  rounded-lg w-full"
+              className="px-4 py-1 text-sm text-black outline-none border  rounded-lg w-full"
             />
           </div>
 
           {loading ? (
-            <div className="flex justify-center items-center  h-screen">
+            <div className="w-full flex  items-center  h-screen">
               <PacmanLoader color="#FF0000" loading={loading} css={override} />
             </div>
           ) : (
-            // Display all images or filtered images with drag-and-drop functionality
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 py-3 lg:grid-cols-4 md:gap-4 px-6 gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 py-3 lg:grid-cols-4 md:gap-20 px-20 gap-10">
               {filteredImages.map((image) => (
                 <DraggableImage key={image.id} image={image} />
               ))}

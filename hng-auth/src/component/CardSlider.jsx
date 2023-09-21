@@ -1,34 +1,9 @@
 import imageNames from "../data";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 function App() {
-  const slideLeft = () => {
-    var slider = document.getElementById("slider");
-    slider.scrollLeft = slider.scrollLeft - 150;
-  };
-
-  const slideRight = () => {
-    var slider = document.getElementById("slider");
-    slider.scrollLeft = slider.scrollLeft + 150;
-  };
-
   return (
-    <div className="  items-center right-0 bottom-0 absolute py-2 px-3   h-96 w-96">
-      <div className="flex items-center justify-center">
-        <div>
-          <MdChevronLeft
-            className="opacity-50 cursor-pointer hover:opacity-100"
-            onClick={slideLeft}
-            size={40}
-            color="#ffffff"
-          />
-          <MdChevronRight
-            className="opacity-50 cursor-pointer hover:opacity-100"
-            onClick={slideRight}
-            size={40}
-            color="#ffffff"
-          />
-        </div>
+    <div className="items-center right-0 bottom-0 absolute py-2 px-3   h-96 w-96">
+      <div className="flex flex-col items-center justify-center">
         <div
           id="slider"
           className="w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide"
@@ -36,7 +11,7 @@ function App() {
           {imageNames.map((item) => (
             <img
               key={item.id}
-              className="w-[220px] h-40 inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300 rounded-lg bg-black"
+              className="w-[220px] h-60 inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300 rounded-lg"
               src={item.image}
               alt="/"
             />

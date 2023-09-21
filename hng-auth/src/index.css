@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.background-content {
+  color: #fef9f9;
+  font-size: 5vw;
+  font-weight: 700;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+span {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+div span {
+  text-shadow: -0.08em 0.03em 0.12em rgba(120, 119, 119, 0.9);
+}
+div span:not(:first-child) {
+  margin-left: -0.23em;
+}
+
+/* CSS Transitions for smooth animations */
+.draggable-item {
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Visual feedback on hover */
+.draggable-item:hover {
+  cursor: grab;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Visual cues for drop zones */
+.drop-zone {
+  border: 2px dashed #ccc;
+}
+
+/* Animation on drop */
+.dropped-item {
+  animation: scaleUp 0.2s ease-in-out;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -20,7 +20,7 @@ const Login = () => {
         throw new Error("Please fill in both email and password fields.");
       }
 
-      if (email === "mailto:user@example.com" && password === "1Password") {
+      if (email === "user@example.com" && password === "1Password") {
         setIsLoggedIn(true);
       } else {
         await auth.signInWithEmailAndPassword(email, password);
@@ -40,7 +40,7 @@ const Login = () => {
       await Swal.fire({
         icon: "error",
         title: "Login Error",
-        text: error.message,
+        text: "Email or Password is Incorrect",
       });
     }
   };

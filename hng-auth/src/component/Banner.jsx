@@ -32,7 +32,7 @@ const Banner = () => {
     <div className="h-full relative">
       <div>
         <div
-          className="h-[70vh] bg-cover bg-no-repeat bg-center "
+          className="h-[80vh] bg-cover bg-no-repeat bg-center "
           style={{
             backgroundImage: `url("https://images.unsplash.com/photo-1622737133809-d95047b9e673?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGFydHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60")`,
           }}
@@ -42,23 +42,35 @@ const Banner = () => {
             bg-opacity-20 rounded-md shadow-md card  justify-center px-6 "
             data-aos="fade-up"
           >
-            <div className=" py-40 ">
-              <h1 className="lg:text-4xl md:text-2xl text-xl font-bold text-white  ">
-                CREATING QUALITY PHOTOS
-              </h1>
-              <p className="max-w-md text-gray-300 mt-4 lg:text-[12px] ">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea
-                harum totam a deserunt porro quas magnam ipsam voluptatibus in
-                reprehenderit.
-              </p>
-              <button className="text-white bg-[#FB320D] px-12 py-2 mt-2 rounded-md text-[13px]">
-                VIEW MORE
-              </button>
+            <div className=" py-40  px-12 ">
+              <div className="background-content text-left ">
+                <div className="background-info reveal">
+                  <div className="span rays reveal">
+                    <span className="text-red-600 font-bold">A</span>
+                    <span className="text-red-600 font-bold">R</span>
+                    <span className="text-red-600 font-bold">T</span>
+                    <span>E</span>
+                    <span>S</span>
+                    <span>S</span>
+                    <span>E</span>
+                    <span>N</span>
+                    <span>C</span>
+                    <span>E</span>
+                  </div>
+                  <p className="text-xs max-w-md md:mb-0 mb-2 text-gray-300 font-normal ">
+                    At ArtEssence Gallery, we believe that art is not just a
+                    creation; its an experience, an emotion, and a way of life.
+                  </p>
+                  <button className="text-white bg-[#FB320D] px-12 py-2  rounded-md text-[13px]">
+                    VIEW MORE
+                  </button>
+                </div>
+              </div>
             </div>
             <div
               className={`absolute ${
-                windowWidth <= 900 ? "top-0" : "-bottom-32"
-              } right-0 p-8 px-28`}
+                windowWidth <= 900 ? "top-0" : "-bottom-24"
+              } right-0 p-8 px-28 -bottom-24`}
             >
               <CardSlider />
             </div>{" "}

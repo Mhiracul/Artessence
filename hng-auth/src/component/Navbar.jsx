@@ -52,16 +52,16 @@ const Navbar = () => {
 
   return (
     <div
-      className="fixed w-full  h-[50px] flex justify-between bg-gradient bg-gradient-to-br from-gray-300 to-transparent  
-    bg-opacity-20 rounded-md  card shadow-lg  z-10  items-center  font-bold cursor-pointer  text-[#03032B] px-6"
+      className="w-full fixed  bg-gradient bg-gradient-to-br from-gray-300 to-transparent  
+    bg-opacity-20 rounded-md  card shadow-lg flex justify-between py-2 z-[99999]  items-center  font-bold cursor-pointer  text-[#03032B] px-20"
     >
       <div className="hidden md:block container">
-        <h1 className="text-xl">ARTESSSENCE</h1>
+        <h1 className="text-xl text-black">ArtEssence</h1>
       </div>
 
       {/* menu */}
       <nav onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-        <ul className="hidden md:flex gap-10">
+        <ul className="hidden md:flex gap-14  font-medium">
           <li>
             <Link to="/">Home</Link>
           </li>
