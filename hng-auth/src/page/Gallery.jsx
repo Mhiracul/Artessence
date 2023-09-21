@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import { TouchBackend } from "react-dnd-touch-backend";
 import PropTypes from "prop-types";
 import imageNames from "../data";
 import Banner from "../component/Banner";
@@ -73,7 +73,7 @@ const Gallery = () => {
   return (
     <>
       <Banner />
-      <DndProvider backend={HTML5Backend}>
+      <DndProvider backend={TouchBackend}>
         <div>
           <div className="mb-4">
             <input

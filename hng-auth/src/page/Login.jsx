@@ -1,38 +1,42 @@
 import { useState } from "react";
+import { auth } from "../firebase"; // Import your Firebase configuration
 import Swal from "sweetalert2";
+import Gallery from "./Gallery";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
-    setError(null); // Clear any previous errors
+    e.preventDefault();
+    setError(null);
 
     try {
       if (!email || !password) {
         throw new Error("Please fill in both email and password fields.");
       }
 
-      if (email !== "mailto:user@example.com" || password !== "1Password") {
-        throw new Error(
-          "Invalid email or password. Please use the provided credentials."
-        );
-      }
+      if (email === "mailto:user@example.com" && password === "1Password") {
+        // For default user, set isLoggedIn to true
+        setIsLoggedIn(true);
+      } else {
+        await auth.signInWithEmailAndPassword(email, password);
 
-      // Handle successful login (e.g., redirect to another page)
-      await Swal.fire({
-        icon: "success",
-        title: "Login Successful",
-        text: "Redirecting...",
-        showConfirmButton: false,
-        timer: 1500, // Automatically close after 1.5 seconds
-      });
+        // For other users, set isLoggedIn to true
+        setIsLoggedIn(true);
+
+        await Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: "Redirecting...",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     } catch (error) {
       setError(error.message);
-
-      // Show an error notification using SweetAlert
       await Swal.fire({
         icon: "error",
         title: "Login Error",
@@ -40,6 +44,11 @@ const Login = () => {
       });
     }
   };
+
+  // Render the Gallery component if isLoggedIn is true
+  if (isLoggedIn) {
+    return <Gallery />;
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
