@@ -4,7 +4,9 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
 import PropTypes from "prop-types";
 import imageNames from "../data";
-import Banner from "../component/Banner";
+import { css } from "@emotion/react";
+import { PacmanLoader } from "react-spinners"; // Import the spinner component
+
 const Gallery = () => {
   const [images, setImages] = useState(imageNames);
   const [loading, setLoading] = useState(false);
@@ -15,14 +17,16 @@ const Gallery = () => {
   };
 
   useEffect(() => {
+    setLoading(true); // Set loading state to true when searching
+
     // Simulate loading delay (replace this with your actual loading logic)
     const timer = setTimeout(() => {
       setLoading(false); // Set loading state to false after a delay (e.g., fetching images)
-    }, 2000); // Adjust the delay as needed
+    }, 5000); // Adjust the delay as needed
 
     // Cleanup the timer to prevent memory leaks
     return () => clearTimeout(timer);
-  }, []); // Run this effect only once when the component mounts
+  }, [searchTerm]); // Run this effect whenever searchTerm changes
 
   const handleDrop = (draggedImageId, droppedImageId) => {
     const updatedImages = [...images];
@@ -58,14 +62,16 @@ const Gallery = () => {
     return (
       <div
         ref={(node) => ref(drop(node))}
-        className="draggable-item rounded-lg shadow-lg p-4 bg-white"
+        className="draggable-item relative rounded-lg shadow-md bg-white"
       >
         <img
           src={image.image}
           alt={image.name}
-          className="w-full h-60 rounded"
+          className="w-full h-96 rounded"
         />
-        <p>{image.tags}</p>
+        <p className="absolute top-2 right-2 text-white bg-black bg-opacity-75 px-2 py-0.5 shadow-md shadow-[#ccc] text-xs rounded-full">
+          {image.tags}
+        </p>
       </div>
     );
   };
@@ -81,25 +87,26 @@ const Gallery = () => {
 
   return (
     <>
-      <Banner />
       <DndProvider backend={backend}>
-        <div>
-          <div className="mb-4">
+        <div className="bg-[#2b2b2b]">
+          <div className=" container mx-auto py-6 px-6">
             <input
               type="text"
               placeholder="Search by tag"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg w-full"
+              className="px-4 py-1 text-sm outline-none  rounded-lg w-full"
             />
           </div>
 
           {loading ? (
-            // Display a loading state when loading is true
-            <div className="loader">Loading...</div>
+            // Display the loading spinner when loading is true
+            <div className="flex justify-center  h-screen">
+              <PacmanLoader color="#FF0000" loading={loading} css={override} />
+            </div>
           ) : (
             // Display all images or filtered images with drag-and-drop functionality
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 md:gap-2 px-6 gap-10">
               {filteredImages.map((image) => (
                 <DraggableImage key={image.id} image={image} />
               ))}
@@ -110,6 +117,11 @@ const Gallery = () => {
     </>
   );
 };
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 Gallery.propTypes = {
   image: PropTypes.shape({
