@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import { TouchBackend } from "react-dnd-touch-backend";
 import PropTypes from "prop-types";
 import imageNames from "../data";
@@ -43,6 +44,10 @@ const Gallery = () => {
     const [, ref] = useDrag({
       type: ItemTypes.IMAGE,
       item: { id: image.id },
+      options: {
+        // Set a threshold for movement before drag starts (adjust as needed)
+        clickTolerance: 10, // Adjust this value as needed
+      },
     });
 
     const [, drop] = useDrop({
@@ -64,6 +69,10 @@ const Gallery = () => {
       </div>
     );
   };
+  const backend =
+    "ontouchstart" in window || navigator.maxTouchPoints
+      ? TouchBackend
+      : HTML5Backend;
 
   // Filter images based on search term
   const filteredImages = searchTerm
@@ -73,7 +82,7 @@ const Gallery = () => {
   return (
     <>
       <Banner />
-      <DndProvider backend={TouchBackend}>
+      <DndProvider backend={backend}>
         <div>
           <div className="mb-4">
             <input
