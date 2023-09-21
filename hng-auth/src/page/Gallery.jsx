@@ -111,7 +111,7 @@ const Gallery = () => {
               <PacmanLoader color="#FF0000" loading={loading} css={override} />
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 py-3 lg:grid-cols-4 md:gap-20 px-20 gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 py-3 lg:grid-cols-4 md:gap-20 px-12 gap-10">
               {filteredImages.map((image) => (
                 <DraggableImage key={image.id} image={image} />
               ))}

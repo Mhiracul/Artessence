@@ -93,11 +93,11 @@ const Navbar = () => {
         onClick={handleClick}
         className="z-10 flex justify-between w-full md:hidden"
       >
-        <h1 className="text-red-500">ARTESSSENCE</h1>
+        <h1 className="text-black">ARTESSSENCE</h1>
       </div>
 
       <div onClick={handleClick} className="md:hidden z-10 ">
-        {!nav ? <FaBars color="#fff" /> : <FaTimes color="#fff" />}
+        {!nav ? <FaBars color="#fff" /> : <FaTimes />}
       </div>
 
       {/* Mobile menu */}
