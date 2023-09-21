@@ -42,7 +42,7 @@ const Banner = () => {
             bg-opacity-20 rounded-md shadow-md card  justify-center  "
             data-aos="fade-up"
           >
-            <div className=" py-40  md:px-12 px-6 ">
+            <div className=" py-32 md:px-12 px-6 ">
               <div className="background-content text-left ">
                 <div className="background-info reveal">
                   <div className="span rays reveal">

@@ -103,7 +103,7 @@ const Gallery = () => {
               placeholder="Search by tag"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="px-4 py-1 text-sm text-black outline-none border  rounded-lg w-full"
+              className="px-4 py-1 text-sm text-black z-[99999] outline-none border  rounded-lg w-full"
             />
           </div>
 
