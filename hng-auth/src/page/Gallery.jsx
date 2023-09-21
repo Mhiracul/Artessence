@@ -46,7 +46,7 @@ const Gallery = () => {
       item: { id: image.id },
       options: {
         // Set a threshold for movement before drag starts (adjust as needed)
-        clickTolerance: 10, // Adjust this value as needed
+        clickTolerance: 30, // Adjust this value as needed
       },
     });
 
