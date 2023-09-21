@@ -32,7 +32,7 @@ const Gallery = () => {
 
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, [searchTerm]);
@@ -75,7 +75,7 @@ const Gallery = () => {
         <img
           src={image.image}
           alt={image.name}
-          className="w-full h-96 rounded"
+          className="w-full h-96 rounded object-cover"
         />
         <p className="absolute top-2 right-2 text-white bg-black bg-opacity-75 px-2 py-0.5 shadow-md shadow-[#ccc] text-xs rounded-full">
           {image.tags}
@@ -112,7 +112,7 @@ const Gallery = () => {
             </div>
           ) : (
             // Display all images or filtered images with drag-and-drop functionality
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 md:gap-2 px-6 gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 py-3 lg:grid-cols-4 md:gap-4 px-6 gap-10">
               {filteredImages.map((image) => (
                 <DraggableImage key={image.id} image={image} />
               ))}
