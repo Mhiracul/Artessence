@@ -40,12 +40,9 @@ const Gallery = () => {
   };
 
   const DraggableImage = ({ image }) => {
-    const [{ isDragging }, drag] = useDrag({
+    const [, ref] = useDrag({
       type: ItemTypes.IMAGE,
       item: { id: image.id },
-      collect: (monitor) => ({
-        isDragging: monitor.isDragging(),
-      }),
     });
 
     const [, drop] = useDrop({
@@ -55,12 +52,8 @@ const Gallery = () => {
 
     return (
       <div
-        ref={(node) => drag(drop(node))}
+        ref={(node) => ref(drop(node))}
         className="draggable-item rounded-lg shadow-lg p-4 bg-white"
-        style={{
-          opacity: isDragging ? 0.5 : 1,
-          cursor: "grab",
-        }}
       >
         <img
           src={image.image}
