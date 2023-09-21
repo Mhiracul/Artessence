@@ -51,3 +51,8 @@ For authentication in this project, you can use the following credentials:
 
       Email: user@example.com
       Password: 1Password
+
+<img width="1440" alt="Screenshot 2023-09-21 at 17 36 47" src="https://github.com/Mhiracul/Artessence/assets/106194709/bbc16fd3-14b0-4b8e-9790-9c13c94571e9">
+
+
+
