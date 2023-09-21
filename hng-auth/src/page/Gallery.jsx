@@ -8,12 +8,13 @@ import { css } from "@emotion/react";
 import { PacmanLoader } from "react-spinners";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { UserAuth } from "../context/Auth";
 
 const Gallery = () => {
   const [images, setImages] = useState(imageNames);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-
+  const { user } = UserAuth();
   const ItemTypes = {
     IMAGE: "image",
   };
@@ -52,7 +53,7 @@ const Gallery = () => {
     }
   };
 
-  const DraggableImage = ({ image }) => {
+  const DraggableImage = ({ image, isDraggable }) => {
     const [, ref] = useDrag({
       type: ItemTypes.IMAGE,
       item: { id: image.id },
@@ -68,7 +69,7 @@ const Gallery = () => {
 
     return (
       <div
-        ref={(node) => ref(drop(node))}
+        ref={(node) => (isDraggable ? ref(drop(node)) : null)}
         className="draggable-item relative rounded-lg shadow-md bg-white"
         data-aos="fade-up"
       >
@@ -113,7 +114,11 @@ const Gallery = () => {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 py-3 lg:grid-cols-4 md:gap-20 px-12 gap-10">
               {filteredImages.map((image) => (
-                <DraggableImage key={image.id} image={image} />
+                <DraggableImage
+                  key={image.id}
+                  image={image}
+                  isDraggable={user !== null}
+                />
               ))}
             </div>
           )}
@@ -135,6 +140,7 @@ Gallery.propTypes = {
     tags: PropTypes.arrayOf(PropTypes.string).isRequired,
     image: PropTypes.string.isRequired,
   }).isRequired,
+  isDraggable: PropTypes.bool.isRequired,
 };
 
 export default Gallery;

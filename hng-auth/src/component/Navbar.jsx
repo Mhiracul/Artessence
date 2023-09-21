@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
+import { UserAuth } from "../context/Auth";
 
 import { Link } from "react-router-dom";
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
+  const { logOut, user } = UserAuth();
+  const isAuthenticated = !!user;
 
   const [bubbles, setBubbles] = useState([]);
 
@@ -50,6 +53,14 @@ const Navbar = () => {
     return () => clearInterval(intervalId);
   }, []);
 
+  const handleSignOut = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div
       className="w-full fixed  bg-gradient bg-gradient-to-br from-gray-300 to-transparent  
@@ -61,16 +72,24 @@ const Navbar = () => {
 
       {/* menu */}
       <nav onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
-        <ul className="hidden md:flex gap-14  font-medium">
+        <ul className="hidden md:flex gap-8 text-sm  items-center font-bold">
           <li>
             <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="about">About</Link>
           </li>
 
           <li>
             <Link to="contact">Contact</Link>
+          </li>
+          <li>
+            {isAuthenticated ? (
+              <span onClick={handleSignOut}>Logout</span>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
+          </li>
+          <li className="inline-flex gap-2 text-xs items-center">
+            {" "}
+            <FaUserCircle size={20} /> {user && user.email}
           </li>
         </ul>
         {bubbles.map((bubble) => (
@@ -105,12 +124,12 @@ const Navbar = () => {
         className={
           !nav
             ? "hidden"
-            : "absolute top-0 left-0 w-full h-60 px-2 bg-[#fff] flex flex-col justify-center items-start"
+            : "absolute top-0 left-0 ml-3  w-full h-60 px- text-sm bg-[#fff] flex flex-col justify-center items-start"
         }
       >
         <Link
           to=""
-          className="px-4 py-2 lg:py-0 text-[#03032B] border-b-2 w-full font-medium hover:text-[#5100EE] cursor-pointer block lg:inline-block "
+          className="px-4 py-2 lg:py-0 text-[#03032B] mt-6 border-b-2 w-full font-medium hover:text-[#5100EE] cursor-pointer block lg:inline-block "
         >
           Home
         </Link>
@@ -126,6 +145,16 @@ const Navbar = () => {
         >
           Contact
         </Link>
+        <li className="px-4 py-2 lg:py-0 text-[#03032B] border-b-2 w-full font-medium hover:text-[#5100EE] cursor-pointer block lg:inline-block">
+          {isAuthenticated ? (
+            <span onClick={handleSignOut}>Logout</span>
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
+        </li>
+        <li className="px-4 py-2 lg:py-0 text-[#03032B] border-b-2 w-full font-medium hover:text-[#5100EE] cursor-pointer block lg:inline-block">
+          {user && user.email}
+        </li>
       </ul>
     </div>
   );

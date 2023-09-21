@@ -1,55 +1,39 @@
+// Signup.js
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { UserAuth } from "../context/Auth";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../component/Navbar";
 import Footer from "../component/Footer";
-import { Link, useNavigate } from "react-router-dom";
-import { UserAuth } from "../context/Auth";
 
-const Login = () => {
-  const { signIn } = UserAuth();
+const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const { createUser } = UserAuth();
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
-
+    setError("");
     try {
-      const userCredential = await signIn(email, password);
-
-      const isDefaultUser =
-        email === "user@example.com" && password === "1Password";
-
-      if (isDefaultUser) {
-        await Swal.fire({
-          icon: "success",
-          title: "Default User Login Successful",
-          text: "Redirecting...",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
-        await Swal.fire({
-          icon: "success",
-          title: "Login Successful",
-          text: "Redirecting...",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-
-      if (!isDefaultUser && userCredential.user) {
-        navigate("/");
-      }
-    } catch (error) {
-      setError(error.message);
+      await createUser(email, password);
+      await Swal.fire({
+        icon: "success",
+        title: "Registration Successful",
+        text: "You can now log in.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/verify-email");
+    } catch (e) {
+      setError(e.message);
       await Swal.fire({
         icon: "error",
-        title: "Login Error",
-        text: "Email or Password is Incorrect",
+        title: "Registration Error",
+        text: e.message,
       });
+      console.log(e.message);
     }
   };
 
@@ -58,13 +42,10 @@ const Login = () => {
       <Navbar />
       <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
-          <div>
-            <h2 className="mt-6 text-center md:text-3xl text-xl uppercase font-extrabold text-gray-900">
-              Sign in to your account
-            </h2>
-            <p className="mt-3 text-center">Welcome back to ArtEssence!!</p>
-          </div>
-          <form className="mt-8 space-y-6" onSubmit={handleLogin}>
+          <h2 className="mt-6 text-center md:text-3xl text-xl uppercase font-extrabold text-gray-900">
+            Sign up for an account
+          </h2>
+          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div>
               <input
                 type="text"
@@ -88,11 +69,11 @@ const Login = () => {
                 type="submit"
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-500 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                Sign in
+                Sign up
               </button>
-              <p>
-                Dont have an account?{" "}
-                <Link to="/signup" className="text-red-600">
+              <p className="text-sm mt-2">
+                Have an account?{" "}
+                <Link to="/login" className="text-red-600">
                   Sign up
                 </Link>{" "}
               </p>
@@ -106,4 +87,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

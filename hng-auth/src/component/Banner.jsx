@@ -69,7 +69,7 @@ const Banner = () => {
             </div>
             <div
               className={`absolute ${
-                windowWidth <= 900 ? "top-0" : "-bottom-52"
+                windowWidth <= 900 ? "top-0" : "-bottom-42"
               } right-0 p-8 px-28 -bottom-32`}
             >
               <CardSlider />

@@ -2,14 +2,18 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./page/Login";
 import Gallary from "./page/Gallary";
+import Signup from "./page/Signup";
+import VerifyEmail from "./page/VerifyEmail";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route exact path="/" element={<Login />} />
-          <Route path="/gallery" element={<Gallary />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route path="/" element={<Gallary />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
         </Routes>
       </Router>
     </div>
